@@ -197,6 +197,47 @@
                                 </div>
                             </div>
 
+                            <!-- Recent Vehicles Section -->
+                            <div class="weather-card rounded-2xl p-6 mb-8">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-xl font-semibold text-white">Recent Vehicle Entries</h3>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                @if($recentVehicles->count() > 0)
+                                    <div class="space-y-4">
+                                        @foreach($recentVehicles as $vehicle)
+                                            <div class="flex items-center justify-between p-4 rounded-lg bg-gray-800/50 hover:bg-gray-800/70 transition-colors">
+                                                <div class="flex items-center space-x-4">
+                                                    <div class="p-2 rounded-full bg-purple-500/20">
+                                                        @if($vehicle->vehicle_type === 'car')
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                            </svg>
+                                                        @else
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                            </svg>
+                                                        @endif
+                                                    </div>
+                                                    <div>
+                                                        <p class="font-semibold text-white">{{ $vehicle->student_name }}</p>
+                                                        <p class="text-sm text-gray-400">{{ $vehicle->student_id }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-right">
+                                                    <p class="font-medium text-white">{{ $vehicle->license_plate }}</p>
+                                                    <p class="text-sm text-gray-400">{{ ucfirst($vehicle->vehicle_type) }} - {{ $vehicle->brand }} {{ $vehicle->model }}</p>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <p class="text-gray-400 text-center py-4">No vehicles registered yet</p>
+                                @endif
+                            </div>
+
                             <div class="cta-section">
                                 <a href="{{ route('vehicles.manage') }}" 
                                    class="inline-flex items-center px-8 py-4 bg-purple-600 text-white font-semibold rounded-xl hover:bg-purple-700 transition-colors">

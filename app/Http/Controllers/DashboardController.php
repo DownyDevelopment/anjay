@@ -33,8 +33,9 @@ class DashboardController extends Controller
         $totalMotorcycles = Vehicle::where('vehicle_type', 'motorcycle')->count();
         $totalCars = Vehicle::where('vehicle_type', 'car')->count();
         $latestVehicle = Vehicle::latest()->first();
+        $recentVehicles = Vehicle::latest()->take(5)->get();
 
-        return view('dashboard', compact('weatherData', 'totalMotorcycles', 'totalCars', 'latestVehicle'));
+        return view('dashboard', compact('weatherData', 'totalMotorcycles', 'totalCars', 'latestVehicle', 'recentVehicles'));
     }
 
     public function manage()
