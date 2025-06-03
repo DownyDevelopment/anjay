@@ -190,6 +190,7 @@
                                         <div class="text-white">
                                             <p class="font-semibold">{{ $latestVehicle->license_plate }}</p>
                                             <p class="text-sm text-gray-400">{{ ucfirst($latestVehicle->vehicle_type) }} - {{ $latestVehicle->brand }} {{ $latestVehicle->model }}</p>
+                                            <p class="text-sm text-purple-400 mt-1">{{ $latestVehicle->entry_time ? \Carbon\Carbon::parse($latestVehicle->entry_time)->format('H:i') : '' }}</p>
                                         </div>
                                     @else
                                         <p class="text-gray-400">No vehicles registered yet</p>
@@ -229,6 +230,7 @@
                                                 <div class="text-right">
                                                     <p class="font-medium text-white">{{ $vehicle->license_plate }}</p>
                                                     <p class="text-sm text-gray-400">{{ ucfirst($vehicle->vehicle_type) }} - {{ $vehicle->brand }} {{ $vehicle->model }}</p>
+                                                    <p class="text-sm text-purple-400 mt-1">{{ $vehicle->entry_time ? \Carbon\Carbon::parse($vehicle->entry_time)->format('d M Y, H:i') : 'No entry time' }}</p>
                                                 </div>
                                             </div>
                                         @endforeach
